@@ -1,0 +1,52 @@
+2015-05-05
+
+TERMINAL
+ bash is your terminal
+ ls = list
+ ls -a = list ALL (no hidden files)
+ ls -l = gives more info  about files
+ ls -lah = list all and give more info
+ open xxx = open file
+ command k = clears buffer
+ control l = does not clear buffer, but gets rid of the type. Keeps buffer history.
+ 	Adds a bunch of white space. same as clear
+ man = short for manual, an argument to read manual about something (eg man open)
+ pwd = print working dir (dir is old term equivalent to folder)
+ tab completion = can type first few letters of file, then tab to fill its best guess. Hit tab again for next one
+ cd with no added location = home dir
+ cd ~/DirName = tilde starts at your home dir and find directory there
+ cd . = dot means in current dir (also ls ., etc)
+ cd .. = go up one directory
+ cd	../.. = go up two directories
+ / means directory
+ ps = processes - shows primary processes
+ ps aux = show auxillary processes
+
+ mkdir = make directory
+ touch = makes file of that name (e.g., touch awesome.rb)
+ cp = copy
+ mv = move - use to rename or to move file.
+ 	mv tacos tacos.rb = rename tacos to tacos.rb
+ 	mv tacos ~/Desktop/ = move tacos to Desktop.
+ rm = remove (learn about -r option!) - this is forever. Removes completely
+ 	-r recursive directory deleting - can delete folder that contains other folders
+
+ grep = more on this later. Text searching.
+
+ bash profile - LOOK THIS UP. Just created one (.bash_profile). Use this to config your bash
+ 	can search bash history
+ 		control r puts you in a search mode
+ 		history | grep xxx = search for xxx using grep in history
+ aliases - keep aliases in bash profiles. These are like keyboard shortcuts, simpler names for commonly used commands that you create
+ 	his file is set up like:
+ 	alias ll='ls -lah'
+ can customize prompt in bash profile PS1/ "xxx"
+ 	find these online
+
+ he uses sublime text
+
+ piping = taking output of one bash command and automatically feed it to the next command
+	with ps:
+	ps aux | grep ruby = find processes that are ruby processes
+ 	uses pipe character |
+ 	

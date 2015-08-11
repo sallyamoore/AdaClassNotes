@@ -1,0 +1,269 @@
+Ruby 101
+Why ruby?
+  Object Oriented Prog
+  Duck typing - interprets type of object by its behavior. Ruby interprets
+  based on context
+  Java and C# don't do this.
+
+Calculation in ruby
+  - Integers are always rounded down (see LTP for why). Must add decimals to
+  make it a float. Ruby infers that you want an integer as result when
+  you input an integer.
+  - More math methods in Math.xx
+    - sqrt and many other things in math library automatically give you a float
+    - .round(2) -> round to 2 decimals (round is a method that exists on the float object)
+    - .floor -> round down
+  - % -> modulus (used primarily to determine if numbers are even or odd)
+  gives the remainder. Or to get primary #s
+
+Terminology:
+ - a function accepts arguments & passes parameters
+ - variables point to values
+ - .method -> referred to as method chaining
+ - in Math.sqrt(16), Math is an object, sqrt is a method, 16 is a parameter
+ - gets is a method to grab next input as a var, includes string literals
+ (formatting characters)
+ - chomp is a method that pulls off ending enter (the new line string literal)
+ - gets is a keyword, as is end, do, etc. These are core concepts with
+ special functionality
+
+Variable assignment
+  - a = 9 -> 9
+  - b = a -> 9
+  - now a = 9 and b = 9
+  - BUT if you reassign a, b WILL NOT change unless you reassign
+  - so if you say a = 11, b will still = 9 until you say b = a again
+
+Strings
+  - plus sign can be used to concatentate two strings
+  - octothorpe is a string literal,
+  so if you enter '#{first_name} #{last_name}' (with values for these vars)
+  you will get
+  \#{first_name} \#{last_name}
+  in irb. adds the \ because it is interpreting that you want to literally show #
+  - use ' = no string interpolation
+  - * called a splat! can "multiply" strings
+  - .reverse, .string
+  - ! is called "bang", changes the var itself. So scream.downcase! is the
+  same as scream = scream.downcase
+
+Symbols - similar to strings, but more like short strings. Text meant only
+for keeping track of name of something in ruby. An identifier. Begins with a :,
+e.g., :hello
+
+More about numbers
+  - Use _ to help with big numbers, i.e., 1_000_000 is interpreted by
+  ruby as 1000000. Fixed number = integer
+
+Arrays - ordered collection of data. Cares about _position_. Use when you care
+about the order of data. Created with []
+  - zero indexed. The first item is in position 0, second in position 1, etc
+  - can also index using negative #s. e.g.,
+  a = [1, "hi", 3.14]
+  a[0] -> 1
+  a[-1] -> 3.14 -> starts at the LAST element
+  - if you add to array, you add the element to the end
+    > a = [1, 2, 3, 4]
+    > a + [5] -> [1, 2, 3, 4, 5] #but does not change the original array
+    > a = a +[5] # changes the value of hte orig array
+    .push #adds a value to the end, .pop removes last value
+    a.push("naps") #adds "naps" to array a
+  - making an array = another array, the second array WILL update with the first one:
+    2.2.1 :058 > a
+ => [1, "hello", 3.14, "naps"]
+2.2.1 :059 > b = a
+ => [1, "hello", 3.14, "naps"]
+2.2.1 :060 > a.pop
+ => "naps"
+2.2.1 :061 > a
+ => [1, "hello", 3.14]
+2.2.1 :062 > b
+ => [1, "hello", 3.14]
+2.2.1 :063 >
+
+  - a[0..2] and a[0...2] will give you a range of values within the array a
+  - a[0, 2] #starting at index 0, takes two items
+  - a[1, 3] #starting at index 1, takes 3 items
+
+Hashes - like an array, makes key/value pairs. Use{} to show. DOES NOT TRACK ORDER
+  - so you can ask for it by name, not just with index numbers
+  - (old way of creating hashes that has been deprecated: )
+  { :lunch => "brisket"} # now done as {lunch: "brisket"}
+  - hashes are like arrays but DO NOT TRACK ORDER.
+  - So, arrays are basically a type of hash in which order is important...
+  and without key/val pairs
+  - use hashes unless you care about order.
+
+BTW, => is called a hash rocket
+
+Flow control - true and false, if and else
+ - can compare numbers, strings, symbols...
+ - <> is an old not equals. Same as !=
+ - in strings, < and > is alphabetical... based on the ordinality of the letters
+    - so, "a" < "b"
+    - Capital letters are less than lowercase are less than numbers
+  -
+
+ATOM TEXT EDITOR
+Other option: Sublime text
+
+Cmd T : to search for and open files
+Cmd shift P : tool palette
+
+
+GROUP EXERCISE - Integer - find two methods, discuss, example
+
+integer methods:
+.even?
+.odd?
+.numerator
+.denominator
+
+array methods:
+.fetch -> a = [1, 2, 3, "dog"], a.fetch(indexnumber), shows if the index number is out of bounds.
+  so, a.fetch(7) -> error, a.fetch(7, "bird") -> bird if out of bounds
+  a.fetch(2) -> 3, a.fetch(3) -> dog
+  a.fetch(7) { |i| puts "#{i} is out of bounds" }
+.flatten - makes sub arrays into one new array. Can also .flatten!
+  s = [1, 2, 3]
+  t = [s, 4, 5, 6] -> [[1, 2, 3], 4, 5, 6]
+  a = t.flatten -> a = [1, 2, 3, 4, 5]
+  b = [t, [7,8]] -> [[[1, 2, 3], 4, 5, 6], [7, 8]]
+  b.flatten(1) #flattens by one level -> [[1, 2, 3], 4, 5, 6, 7, 8]
+  b.flatten(2) #flattens by two levels -> [1, 2, 3, 4, 5, 6, 7, 8]
+  to get to [1, 2, 3], use b[0][0]. b[0].flatten -> [1, 2, 3, 4, 5, 6]
+.push - adds thing(s) to the end of the array
+  black = ["red", "orange"]
+  black.push("blue", "green") -> ["red", "orange", "blue", "green"]
+.rotate - moves first to last or rotates by a specified number of positions
+  black.rotate -> ["orange", "blue", "green", "red"]
+  black.rotate(2) -> ["blue", "green", "red", "orange"]
+.pop - permanently removes and returns last element from array as default,
+  pops off and returns
+  number of elements from the end if specified in parameter, e.g., pop(2)
+  returns 2 elements from the end.
+.sort - sorts element in an array. numerically or alpha, caps are less than
+  lower case. use ! to permanently change the array. (Hungarian folk dance youtube
+  video to explain the underlying algorithm!)
+
+string methods
+.center - adds blank spaces to center a string within a set number of spaces.
+  can also specify char to put in blanks as second parameter
+
+puts "string".center(2)
+puts "string".center(10)
+puts "string".center(10, "*")
+
+.replace - changes original value to what you just input it as.
+name = "Sally"
+name.replace("Muttsuru")
+
+.strip
+hamlet = "   to be or not to be...   "
+puts hamlet.lstrip => strips spaces from left side
+puts hamlet.rstrip =>  strips spaces from right side
+puts hamlet.strip => strips spaces from both sides.
+
+.split -
+snacks = "cheese, chips; chocolate, candy"
+snacks.split(";") => splits on specified char
+snacks.split => defaults to split on spaces
+makes string into an array separated on specified char
+
+.swap - switches caps to lowercase and vice versa
+a = "OpOsItE dAy!!!"
+a.swapcase => "oPoSiTe DaY!!!"
+Useful to take a password that is opposite in case from what it was supposed to
+be... could still accept by using swapcase.
+
+.squeeze - removes all of the repetitions of the same char, or you can specify
+what to take away
+a = "ahhhhhhh"
+a.squeeze => ah
+b = "heeeeey giiiiiirl"
+b.squeeze("i") => "heeeeey girl"
+
+float methods
+.round - rounds mathematically 4.1 => 4, 5.9 => 6. Takes numeric argument
+specifying number of decimals. Negative numbers entered => rounding to the left
+of the decimal
+
+.ceil - rounds up. 4.6.ceil => 5. Takes var or an integer.
+
+.floor - rounds down
+
+.abs - returns absolute value of the float
+
+<=> - comparison operator. returns -1, 0, or 1 depending on whether float is
+less than, equal to, or greater than other number (any real number, referred to in
+documentation as a "real")
+  4 <=> 8 => -1
+  8 <=> 4 => 1
+  4 <=> 4 => 0
+can compare two strings, orders alpha
+
+hash methods
+
+has_key?
+  h = {new_to_mac: 13, cyclists: 10, new_to_seattle: 7}
+  h.has_key?(:cyclists) => true
+
+has_value?
+  same hash as above
+  h.has_value?(7) => true
+  h.has_value?(22) => false
+  parameter can be integer, string, whatever.
+
+replace -
+  a = { thing: "flower", pet: "dog" }
+  a.replace({ pet2: "cat", thing2: "plant" })
+  replaces WHOLE HASH; replacing one item is a diff method
+
+update - aka merge. takes 2 hashes and combines them. Existing keys will be
+  replaced with new value, although you can also specify to use the first key not
+  the second as an argument.
+  From IRB
+2.2.1 :059 >   animal = { cat: "tabby", dog: "havanese" }
+ => {:cat=>"tabby", :dog=>"havanese"}
+2.2.1 :060 > more_animals = { whale: "blue", jellyfish: "box" }
+ => {:whale=>"blue", :jellyfish=>"box"}
+2.2.1 :061 > animal.update(more_animals)
+ => {:cat=>"tabby", :dog=>"havanese", :whale=>"blue", :jellyfish=>"box"}
+2.2.1 :062 >
+
+  new = { kitty: "Mr. Bojangles", dog: "Mabel" }
+  animal.update(new) {|kitty: "Moriarty", "Mr. Bojangles"|, "Moriarty"}
+    => keeps Moriarty from another hash rather than overridig.
+
+add to a hash with new[:key] = "value"
+
+_________
+
+_INTERNSHIP_
+start 11/30
+
+SPONSORS (look up on crunchbase.com)
+concur
+envestnet
+gettyimages
+amazon - teams include kindle, aws
+microsoft - exchange team
+moz
+spare5
+buuteeq
+substantial
+redfin
+expedia
+socrata
+tune
+skytap
+energysavvy
+... more ...
+
+How do I get placed to a company?
+- initial rating of companies based on your first impressions
+- ambassador rotations starting in June (they will take you to lunch, meet for
+coffee, etc). You rotate ambassadors every 2 weeks
+- more surveys about company interest
+- week of interviews about 1.5 mo before class portion ends. ~7 interviews
+- final rating of companies

@@ -1,0 +1,17 @@
+1. Create and make note of app name.
+$ heroku create
+
+2. Add gems to appropriate place in gemfile
+  - sqlite3 in development group
+  - 'pg' in production group
+  - remove sqlite3 in section above
+
+3. $ bundle --without production
+
+4. git commit and push all changes
+
+5. $ git push heroku sam/master:master
+
+6. $ heroku run rake db:migrate
+
+7. $ heroku run rake db:seed
