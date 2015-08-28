@@ -117,3 +117,130 @@ var audio_tag = document.getElementById('aAudio');
 audio_tag.current_time = 0;
 audio_tag.play();
 ```
+
+jnf solution
+```javascript
+$(document).ready( function() {
+  $('.note').mousedown(function() {
+    var note_id = $(this).text() + "Audio"; // gets the text contained in the element
+    var note = document.getElementById(note_id);
+    note.currentTime = 0;
+    note.play();
+  });
+});
+```
+
+jnf with keypress
+```javascript
+$(document).ready( function() {
+
+  $('.note').mousedown(function() {
+    playNote($(this).text());
+    });
+
+  var note_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+  $('html').keypress(function(event) {
+    var letter = String.fromCharCode(event.which);
+    if (note_letters.indexOf(letter) > -1) {
+      playNote(letter);
+
+      $('.note.' + letter).addClass('active');
+      setTimeout(function() {
+        $('.note').removelass("active");
+        }, 100);
+      }
+    })
+
+  function playNote(note) {
+    //play note looked something like this
+    var note = document.getElementById(note_id);
+    note.currentTime = 0;
+    note.play();
+  }
+});
+```
+
+kari solution
+```javascript
+$(document).ready( function() {
+
+  function playNote(note_letter) {
+    var audio_tag = documents.getElementById(note_letter + "Audio");
+    audio_tag.currentTime = 0;
+    audio_tag.play();
+  }
+
+  $(".note").click(function() {
+    // get assoc'd class
+    var class_name = $(this).attr("class");
+    var note = class_name.charAt(class_name.length - 1);
+
+    playNote(note);
+  }
+
+  // logic for keypress
+  $(this).keypress(function(e) { // e is short for event. Can call it anything, but e and event are typical.
+    var key_code = e.which;
+
+    // ensure key_code is in the correct range.
+    if (key_code > 96 && key_code < 104) {
+      var note = String.fromCharCode(e.which);
+      playNote(note);
+    } else {
+      alert("Stop pressing weird keys!");
+    }
+  });
+});
+```
+## HW REV EJS Ch 13 - the DOM
+body has childNodes (e.g., h1, p) that are numbered using array index notation from top to bottom. Can navigate around in jQuery using methods like previousSibling, lastChild, parentNode, etc.
+
+### get all children:
+$('body').children();
+
+### get children with p tags:
+$('body').children('p');
+
+### get first/last child:
+$('body').children(':last-child');
+$('body').children(':first-child');
+- there's also nth-child
+
+### get siblings, get parent:
+var first_child = $('body').children(':first-child');
+var siblings = first_child.siblings();
+var parent = first_child.parent();
+
+### is the parent a body?
+console.log(parent.is("body"));
+
+### is the parent a div?
+console.log(parent.is("body"));
+
+Example of usage:
+Submit button is at bottom of form; would need to navigate up to get info on where submit should go.
+
+## Modify!
+### add a new <h2>
+last_child.append("<h2>YAAAS</h2>") // but is nested within the p tag.
+
+### add new <h2> to parent:
+parent.append("<h2>BO$$</h2>") // adds to end of content, not end of element
+                               // it's called on
+
+### get class attribute:
+children.attr("class");
+
+### set class attribute:
+children.attr("class", "not-classy");
+
+### add a class:
+children.addClass("some-font");
+
+### toggle class on click:
+$('h1').click(function() {
+    $(this)toggleClass("some-font");
+});
+
+### get parent with specified class (works even if nested):
+$(this).parents('.club');
