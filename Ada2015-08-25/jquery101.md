@@ -244,3 +244,12 @@ $('h1').click(function() {
 
 ### get parent with specified class (works even if nested):
 $(this).parents('.club');
+
+
+# other helpful jquery functions
+.reload()
+.isNaN()
+.val vs .text
+  - val = jquery method that gets/changes value of an _input_ html object.
+  - text = jquery method that gets/changes the text in a node.
+  - innerhtml is a JavaScript function to get text in a node
