@@ -111,7 +111,7 @@ $.get('/clubs.json', function(data, textStatus, xhr) {
 });
 ```
 
-This method takes two arguments. The first argument is the url to submit the request to. The second is a function which will receive, the data, status, and the HTTP response itself.
+This method takes two arguments. The first argument is the url to submit the request to. The second is a function which will receive the data, status, and the HTTP response itself.
 
 ### Note
 JavaScript itself provides AJAX functionality without the help of jQuery. We use jQuery for this because it abstracts away some of minutia that makes it more difficult to use JavaScript by itself.

@@ -424,4 +424,4 @@ OAuth allows integration of login. It is a standard used by authorization across
 OmniAuth is a tool to do this as a gem in rails. OmniAuth is the Rails implementations of OAuth, the piece exposing this info to us in Rails.
 
 # Why create user in the model?
-B/c you're saving to db and it requires add'l logic that would be the same anytime you create a user. Might need to use in multiple methods across multiple controllers. Also, you're doing this from the SessionsController not the UsersController. 
+B/c you're saving to db and it requires add'l logic that would be the same anytime you create a user. Might need to use in multiple methods across multiple controllers. Also, you're doing this from the SessionsController not the UsersController.
